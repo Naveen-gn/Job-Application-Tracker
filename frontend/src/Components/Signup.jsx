@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { IoMdSave } from "react-icons/io";
-import { FaLightbulb } from "react-icons/fa";
-import { TbBrandSpeedtest } from "react-icons/tb";
 import { Alert, Button, Label, TextInput, Spinner } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 

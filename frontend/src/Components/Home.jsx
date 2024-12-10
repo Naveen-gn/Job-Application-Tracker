@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IoMdSave } from "react-icons/io";
 import { FaLightbulb } from "react-icons/fa";
 import { TbBrandSpeedtest } from "react-icons/tb";
@@ -6,6 +6,12 @@ import { Button } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const Login = localStorage.getItem("Login");
+  useEffect(() => {
+    if (Login) {
+      navigate('/dashboard')
+    }
+  }, [])
   return (
     <div className='bg-[#10172a] w-full flex flex-col md:flex-row flex-wrap min-h-screen justify-center items-start pt-32 '>
 
