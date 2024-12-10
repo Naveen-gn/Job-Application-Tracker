@@ -9,7 +9,7 @@ import Signup from './Components/Signup.jsx'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_relativeSplatPath: true }}>
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
