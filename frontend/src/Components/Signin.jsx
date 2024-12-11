@@ -18,7 +18,7 @@ export default function Signin() {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res=await fetch('http://localhost:5000/api/auth/signin',{
+      const res=await fetch('https://trackmyjob-server.vercel.app/api/auth/signin',{
         method:'POST',
         headers:{
           'Content-Type':'application/json'

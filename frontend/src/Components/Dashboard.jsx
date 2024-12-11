@@ -38,7 +38,7 @@ export default function Dashboard() {
     setLoading(true);
     try {
       const params = { status: statusFilter, sort: sortBy, search: search };
-      const { data } = await axios.get('http://localhost:5000/api/jobs', { params });
+      const { data } = await axios.get('https://trackmyjob-server.vercel.app/api/jobs', { params });
       setJobs(data.data || []);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -56,7 +56,7 @@ export default function Dashboard() {
   const handleDelete = async (id) => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+      await axios.delete(`https://trackmyjob-server.vercel.app/api/jobs/${id}`);
       fetchJobs();
     } catch (error) {
       console.error('Error deleting job:', error);
@@ -69,7 +69,7 @@ export default function Dashboard() {
   const handleCreate = async () => {
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/jobs', newJob);
+      await axios.post('https://trackmyjob-server.vercel.app/api/jobs', newJob);
       setNewJob({ title: '', company: '', status: 'Applied', dateApplied: '', notes: '' });
       setAddModalOpen(false);
       fetchJobs();
@@ -84,7 +84,7 @@ export default function Dashboard() {
   const handleUpdate = async () => {
     setLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/jobs/${currentJob._id}`, currentJob);
+      await axios.put(`https://trackmyjob-server.vercel.app/api/jobs/${currentJob._id}`, currentJob);
       setCurrentJob(null);
       setEditModalOpen(false);
       fetchJobs();
