@@ -14,12 +14,18 @@ mongoose
   .catch(err => console.error(err));
 
 const app = express();
+const allowedOrigins = ['http://localhost:5173', 'https://track-myjob.vercel.app'];
 
-var corsOptions = {
-  origin: 'https://track-myjob.vercel.app',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-
-}
+app.use(cors({
+  origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  credentials: true
+}));
 
 app.use(cors(corsOptions));
 app.use(express.json());
