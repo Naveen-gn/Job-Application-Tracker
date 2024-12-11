@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Table } from "flowbite-react";
+import { MdAdd } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
+import { MdModeEdit } from "react-icons/md";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -83,24 +87,24 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="dashboard p-4 max-w-7xl mx-auto">
+    <div className="dashboard p-4 max-w-7xl mx-auto ">
       <h1 className="text-2xl font-bold mb-4">Job Application Tracker</h1>
 
       {/* Filters and Sorting */}
-      <div className="flex gap-4 mb-4">
+      <div className="flex gap-4 mb-4 items-center justify-center flex-wrap">
         <input
           type="text"
-          placeholder="Search by title or company"
+          placeholder="Search by title or company 🔍"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border p-2 rounded w-full"
+          className="border p-2 rounded w-60"
         />
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
           className="border p-2 rounded"
         >
-          <option value="">All Statuses</option>
+          <option value="">Statuses</option>
           <option value="Applied">Applied</option>
           <option value="Interviewing">Interviewing</option>
           <option value="Offered">Offered</option>
@@ -115,15 +119,18 @@ export default function Dashboard() {
           <option value="title">Title</option>
           <option value="company">Company</option>
         </select>
-      </div>
-
-      {/* Add Job Button */}
-      <button
-        className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
+        {/* Add Job Button */}
+      <Button
+        className=" text-white  px-4 rounded flex items-center gap-1"
+         gradientDuoTone="purpleToPink"
         onClick={() => setAddModalOpen(true)}
       >
-        Add New Job
-      </button>
+        <MdAdd className='text-2xl' />
+        Add New Job 
+      </Button>
+      </div>
+
+      
 
       {/* Loading Spinner */}
       {loading && (
@@ -133,7 +140,8 @@ export default function Dashboard() {
       )}
 
       {/* Job Table */}
-      <table className="w-full border-collapse border">
+      <div className="overflow-x-auto">
+      <Table className="w-full border-collapse border">
         <thead>
           <tr className="bg-gray-100">
             <th className="border p-2">Title</th>
@@ -161,31 +169,31 @@ export default function Dashboard() {
                 <td className="border p-2 ">{job.notes}</td>
                 <td className="border p-2 flex justify-center items-center">
                   <button
-                    className="bg-green-500 text-white py-1 px-2 rounded mr-2"
+                    className="bg-violet-800 text-white py-1 px-2 rounded mr-2 flex items-center gap-1"
                     onClick={() => {
                       setCurrentJob(job);
                       setEditModalOpen(true);
                     }}
                   >
-                    Edit
+                    Edit <MdModeEdit />
                   </button>
                   <button
-                    className="bg-red-500 text-white py-1 px-2 rounded"
+                    className="bg-red-500 text-white py-1 px-2 rounded flex items-center gap-1"
                     onClick={() => handleDelete(job._id)}
                   >
-                    Delete
+                    Delete <FaTrash />
                   </button>
                 </td>
               </tr>
             ))
           )}
         </tbody>
-      </table>
-
-      {/* Add and Edit Modals (unchanged, omitted for brevity) */}
+      </Table>
+</div>
+      {/* Add and Edit Modals */}
        {/* Add Job Modal */}
        {isAddModalOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-md">
             <h2 className="text-xl font-bold mb-4">Add New Job</h2>
             <input
@@ -229,10 +237,10 @@ export default function Dashboard() {
                 className="bg-gray-300 py-2 px-4 rounded mr-2"
                 onClick={() => setAddModalOpen(false)}
               >
-                Cancel
+                Cancel 
               </button>
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded"
+                className="bg-violet-800 text-white py-2 px-4 rounded"
                 onClick={handleCreate}
               >
                 Add Job
@@ -291,7 +299,7 @@ export default function Dashboard() {
                 Cancel
               </button>
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded"
+                className="bg-violet-800 text-white py-2 px-4 rounded"
                 onClick={handleUpdate}
               >
                 Save Changes

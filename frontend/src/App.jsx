@@ -5,7 +5,6 @@ import Home from './Components/Home.jsx'
 import Dashboard from './Components/Dashboard.jsx'
 import Signin from './Components/Signin.jsx'
 import Signup from './Components/Signup.jsx'
-import ProtectedRoute from './Components/ProtectedRoute.jsx'
 
 
 export default function App() {
@@ -16,7 +15,7 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
-         <Route path='/dashboard' element={<ProtectedRoute element={Dashboard} isAuthenticated={isAuthenticated} />} />
+         <Route path='/dashboard' element={<Dashboard />}  />
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
       </Routes>
