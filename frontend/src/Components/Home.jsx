@@ -14,7 +14,7 @@ export default function Home() {
     }
   }, [])
   return (
-    <div className='bg-[#10172a] w-full flex flex-col md:flex-row flex-wrap min-h-screen justify-center items-start pt-32 '>
+    <div className='bg-[#10172a] w-full flex flex-col md:flex-row flex-wrap min-h-screen justify-start items-start pt-5 md:pt-32 '>
 
       <div className='flex w-full md:w-1/2 flex-col gap-3 px-2'>
       <h1 className='bg-gradient-to-r from-pink-600 via-pink-600 to-violet-600 text-transparent bg-clip-text text-center text-xl font-medium '>Job application tracker</h1>
