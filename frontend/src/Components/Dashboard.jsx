@@ -5,6 +5,15 @@ import { Button, Table } from "flowbite-react";
 import { MdAdd } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
+import { Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend
+} from 'chart.js';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Dashboard() {
   const location = useLocation();
@@ -86,6 +95,25 @@ export default function Dashboard() {
     }
   };
 
+  // Get statistics for the pie chart
+  const getStatusStatistics = () => {
+    const statusCounts = jobs.reduce((acc, job) => {
+      acc[job.status] = (acc[job.status] || 0) + 1;
+      return acc;
+    }, {});
+
+    return {
+      labels: Object.keys(statusCounts),
+      datasets: [
+        {
+          data: Object.values(statusCounts),
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50'],
+          hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50']
+        }
+      ]
+    };
+  };
+
   return (
     <div className="dashboard p-4 max-w-7xl mx-auto ">
       <h1 className="text-2xl font-bold mb-4">Job Application Tracker</h1>
@@ -130,7 +158,18 @@ export default function Dashboard() {
       </Button>
       </div>
 
-      
+      {/* Job Statistics Pie Chart */}
+<div className="chart-container my-6 mx-auto flex justify-center items-center flex-col gap-3">
+  <h2 className="text-xl font-bold mb-4 text-start self-start">Job Status Distribution</h2>
+  {jobs.length > 0 ? (
+    <div className='w-[300px] h-[300px]'>
+
+      <Pie data={getStatusStatistics()} width={50} height={50} />
+    </div>
+  ) : (
+    <p>No data available to display the chart.</p>
+  )}
+</div>
 
       {/* Loading Spinner */}
       {loading && (
