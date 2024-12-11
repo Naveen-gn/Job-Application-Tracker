@@ -15,7 +15,6 @@ mongoose
 
 const app = express();
 const allowedOrigins = ['http://localhost:5173', 'https://track-myjob.vercel.app'];
-
 app.use(cors({
   origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
