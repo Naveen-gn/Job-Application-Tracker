@@ -3,9 +3,10 @@ import { IoMdSave } from "react-icons/io";
 import { FaLightbulb } from "react-icons/fa";
 import { TbBrandSpeedtest } from "react-icons/tb";
 import { Button } from 'flowbite-react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate  } from 'react-router-dom'
 
 export default function Home() {
+  const navigate=useNavigate();
   const Login = localStorage.getItem("Login");
   useEffect(() => {
     if (Login) {

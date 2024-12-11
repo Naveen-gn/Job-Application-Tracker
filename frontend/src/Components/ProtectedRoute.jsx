@@ -7,3 +7,5 @@ const ProtectedRoute = ({ element: Component, isAuthenticated, ...rest }) => {
 };
 
 export default ProtectedRoute;
+
+

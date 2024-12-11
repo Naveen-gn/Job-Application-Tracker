@@ -40,10 +40,12 @@ export default function Signin() {
         return 
       }
       if (res.ok) {
+        localStorage.setItem('Login',true)
+        localStorage.setItem('Email',data.email)
+        localStorage.setItem('Username',data.username)
         setLoading(false);
         setErrorMessage(null);
-        localStorage.setItem('Login',true)
-        navigate('/dashboard')
+        navigate('/dashboard',{state:{email:data.email,username:data.username}})
       }
     } catch (error) {
       setLoading(false);
