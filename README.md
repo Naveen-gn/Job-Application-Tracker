@@ -74,6 +74,10 @@ The project is built using the **MERN stack** (MongoDB, Express, React, Node.js)
 ### 5. **Responsive Design**
    - Fully styled with **Tailwind CSS** to ensure a clean, responsive layout across devices.
 
+### 6. **Interactive Chart**:
+   - Pie chart displaying the distribution of job application statuses.
+   - Automatically updates based on the current job data.
+
 ---
 
 ## Future Enhancements
